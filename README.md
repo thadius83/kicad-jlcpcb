@@ -77,11 +77,40 @@ Pre-configured netclasses with appropriate track widths, clearances, and via siz
 - KiCad 9.0 or later
 - JLCPCB 4-layer PCB fabrication service
 
+## Important Manufacturing Notes
+
+### Via Types
+- Only through-hole vias are supported (no blind/buried or microvias)
+
+### Hole Constraints
+- **PTH (Plated Through-Hole):** 0.2-6.3 mm diameter
+- **NPTH (Non-Plated Through-Hole):** Min 0.5 mm diameter
+- **Castellated Holes:** Min 0.6 mm diameter
+- **Plated Slots:** Min 0.5 mm width (drawn with pad)
+- **Non-Plated Slots:** Min 1.0 mm width (draw outline in Edge.Cuts layer)
+
+### NPTH with Copper Pads
+If using NPTH with surrounding copper pads, the inner diameter of the pad should be 0.4-0.5 mm larger than the NPTH drill diameter. JLCPCB will remove copper 0.2-0.25 mm around the hole to prevent it from becoming plated.
+
+### Small Via Warning
+Avoid vias with holes < 0.3 mm and diameter ≤ 0.4 mm, as these trigger an expensive 4-Wire Kelvin Test. If necessary, ensure annular ring ≥ 0.125 mm.
+
+### Board Constraints
+- Minimum board size: 10 × 10 mm
+- Hole to board edge: ≥ 1 mm
+
 ## License
 
 This template is provided as-is for use with JLCPCB manufacturing services. Modify as needed for your specific design requirements.
 
-## References
+## Credits & References
 
-- [JLCPCB Capabilities](https://jlcpcb.com/capabilities/pcb-capabilities)
+### Custom Design Rules
+The `.kicad_dru` file is based on JLCPCB manufacturing capabilities and was inspired by:
+- Original repository: [Cimos/KiCad-CustomDesignRules](https://github.com/Cimos/KiCad-CustomDesignRules)
+- [darkxst's JLCPCB DRC rules](https://gist.github.com/darkxst/f713268e5469645425eed40115fb8b49)
+- [denniskupec's JLCPCB DRC rules](https://gist.github.com/denniskupec/e163d13b0a64c2044bd259f64659485e)
+
+### Documentation
+- [JLCPCB PCB Capabilities](https://jlcpcb.com/capabilities/pcb-capabilities)
 - [KiCad Custom Design Rules Documentation](https://docs.kicad.org/master/en/pcbnew/pcbnew_advanced.html#custom_design_rules)
