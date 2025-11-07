@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>JLCPCB 4-Layer Template (3313 Stackup)</title>
+    <style>
+      body { max-width: 980px; margin: 2rem auto; font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 0 1rem; }
+      h1 { margin: 0 0 0.5rem; }
+      h2 { margin: 1.5rem 0 0.25rem; font-size: 1.3em; }
+      h3 { margin: 1.5rem 0 0.5rem; font-size: 1.1em; }
+      code { background: #f6f8fa; padding: 0.1rem 0.35rem; border-radius: 4px; font-family: monospace; }
+      table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+      th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+      th { background: #f0f3f6; font-weight: 600; }
+      .meta { color: #555; margin-bottom: 1rem; }
+      ul { margin: 0.5rem 0; }
+      li { margin: 0.25rem 0; }
+    </style>
+  </head>
+
+  <body>
+    <h1>JLCPCB 4-Layer PCB Template</h1>
+
+    <div class="meta">
+      Prepreg: <strong>3313</strong> &middot; 1oz outer copper &middot; &epsilon;r &asymp; <strong>4.1</strong> &middot; Total thickness: <strong>1.58mm</strong>
+    </div>
+
+    <p>
+      Production-ready KiCad template for 4-layer PCBs manufactured by JLCPCB using the 3313 stackup.
+      Includes pre-configured design rules, layer stack, and custom netclasses for high-speed signals,
+      RF, differential pairs, and power routing.
+    </p>
+
+    <h2>Layer Stack</h2>
+    <div class="meta">
+      Microstrip reference: F.Cu over solid GND (In1.Cu) with dielectric <strong>h = 0.0994 mm</strong>
+    </div>
+    <table>
+      <tr><th>Layer</th><th>Material</th><th>Thickness</th><th>Notes</th></tr>
+      <tr><td>F.Cu (Top)</td><td>Copper</td><td>0.035 mm (1 oz)</td><td>Signal / microstrip reference to In1.Cu</td></tr>
+      <tr><td>Dielectric 1</td><td>Prepreg 3313</td><td>0.0994 mm</td><td>&epsilon;r = 4.1</td></tr>
+      <tr><td>In1.Cu</td><td>Copper</td><td>0.0152 mm</td><td>Recommend solid GND plane</td></tr>
+      <tr><td>Dielectric 2</td><td>Core FR-4</td><td>1.265 mm</td><td>&epsilon;r = 4.1</td></tr>
+      <tr><td>In2.Cu</td><td>Copper</td><td>0.0152 mm</td><td>Power/GND as needed</td></tr>
+      <tr><td>Dielectric 3</td><td>Prepreg 3313</td><td>0.0994 mm</td><td>&epsilon;r = 4.1</td></tr>
+      <tr><td>B.Cu (Bottom)</td><td>Copper</td><td>0.035 mm (1 oz)</td><td>Signal</td></tr>
+    </table>
+
+    <h2>Design Rules Summary</h2>
+    <table>
+      <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
+      <tr><td>Min track width/spacing</td><td>0.09 mm</td><td>JLCPCB 4-6 layer, 1 oz capability</td></tr>
+      <tr><td>Standard via</td><td>0.6 / 0.3 mm</td><td>Diameter / drill (no extra fee)</td></tr>
+      <tr><td>Min annular ring</td><td>0.075 mm</td><td>Via and PTH</td></tr>
+      <tr><td>Min hole-to-hole</td><td>0.5 mm</td><td>Different nets</td></tr>
+      <tr><td>Edge clearance</td><td>0.3 mm</td><td>Traces to board edge</td></tr>
+      <tr><td>Silkscreen clearance</td><td>0.15 mm</td><td>Pads to silkscreen</td></tr>
+      <tr><td>Solder mask clearance</td><td>0.05 mm</td><td>Global pad to mask</td></tr>
+      <tr><td>Min solder mask web</td><td>0.08 mm</td><td>Between adjacent pads</td></tr>
+    </table>
+
+    <h2>Custom Netclasses</h2>
+    <div class="meta">Pre-configured netclasses with impedance-controlled routing</div>
+    <table>
+      <tr><th>Netclass</th><th>Track Width</th><th>Clearance</th><th>Via</th><th>Purpose</th></tr>
+      <tr><td><code>SIGNAL</code></td><td>0.2 mm</td><td>0.2 mm</td><td>0.6/0.3</td><td>Standard signal traces</td></tr>
+      <tr><td><code>HS_50R_MICROSTRIP</code></td><td>0.1565 mm</td><td>0.2 mm</td><td>0.5/0.25</td><td>50 ohm single-ended (RF, high-speed)</td></tr>
+      <tr><td><code>HS_90R_DIFF_EC</code></td><td>0.1582 mm</td><td>0.2 mm</td><td>0.5/0.25</td><td>90 ohm differential (USB 2.0 HS, etc.)</td></tr>
+      <tr><td><code>SIGNAL_FINE</code></td><td>0.12 mm</td><td>0.12 mm</td><td>0.5/0.25</td><td>Fine-pitch signals</td></tr>
+      <tr><td><code>SENSE_KELVIN</code></td><td>0.2 mm</td><td>0.25 mm</td><td>0.5/0.25</td><td>Kelvin sense traces</td></tr>
+      <tr><td><code>RELAY_SSR_CTRL</code></td><td>0.25 mm</td><td>0.25 mm</td><td>0.7/0.35</td><td>Relay/SSR control</td></tr>
+      <tr><td><code>PWR_1A</code></td><td>0.6 mm</td><td>0.3 mm</td><td>0.8/0.4</td><td>Power (up to 1A)</td></tr>
+      <tr><td><code>PWR_2A</code></td><td>1.0 mm</td><td>0.35 mm</td><td>1.0/0.5</td><td>Power (up to 2A)</td></tr>
+      <tr><td><code>VBAT_HIGH</code></td><td>1.5 mm</td><td>0.4 mm</td><td>1.0/0.5</td><td>High-current battery traces</td></tr>
+    </table>
+
+    <h2>Differential Pair Settings</h2>
+    <table>
+      <tr><th>Netclass</th><th>Width</th><th>Gap</th><th>Impedance</th></tr>
+      <tr><td><code>HS_90R_DIFF_EC</code></td><td>0.1582 mm</td><td>0.2032 mm</td><td>~90 ohm differential</td></tr>
+    </table>
+    <div class="meta">
+      Edge-coupled differential pair optimized for USB 2.0 High-Speed and similar protocols
+    </div>
+
+    <h2>Usage Notes</h2>
+    <ul>
+      <li>Keep In1.Cu as a continuous ground plane under high-speed traces for best signal integrity</li>
+      <li>Use 45° miters or rounded corners for impedance-controlled traces</li>
+      <li>Assign nets to appropriate netclasses for automatic DRC compliance</li>
+      <li>Custom DRC rules are defined in the .kicad_dru file for JLCPCB manufacturing capabilities</li>
+      <li>Template includes I2C and SPI bus aliases for easy multi-wire routing</li>
+    </ul>
+  </body>
+</html>
